@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Check out source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Show toolchain versions
         run: |
@@ -45,7 +45,9 @@ jobs:
         run: |
           binary="build_macos/RelWithDebInfo/program-display.plugin/Contents/MacOS/program-display"
           file "${binary}"
-          lipo -verify_arch arm64 x86_64 "${binary}"
+          architectures="$(lipo -archs "${binary}")"
+          [[ " ${architectures} " == *" arm64 "* ]]
+          [[ " ${architectures} " == *" x86_64 "* ]]
 
       - name: Upload test build
         uses: actions/upload-artifact@v4
