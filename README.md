@@ -5,21 +5,20 @@
 # Program Display
 
 [![CI](https://github.com/jonathanrelf/program-display/actions/workflows/ci.yaml/badge.svg?branch=main&event=push)](https://github.com/jonathanrelf/program-display/actions/workflows/ci.yaml)
-[![Release](https://img.shields.io/github/v/release/jonathanrelf/program-display?include_prereleases=true&sort=semver)](https://github.com/jonathanrelf/program-display/releases)
+[![Release](https://img.shields.io/github/v/release/jonathanrelf/program-display?include_prereleases&sort=semver)](https://github.com/jonathanrelf/program-display/releases)
 [![Licence](https://img.shields.io/github/license/jonathanrelf/program-display)](LICENSE)
 
-Program Display is an independent, open-source plugin that remembers which
-physical macOS display should show the OBS Studio Program feed. When OBS starts,
-or when that display is reconnected, the plugin resolves the saved display
-identity against the displays that are connected now and asks OBS to open its
-fullscreen Program projector there.
+Program Display removes a small but risky setup step from recurring OBS
+sessions. Choose a dedicated output display once—such as a venue projector,
+confidence monitor or capture device feeding another computer—and the plugin
+asks OBS to send Program back to that same physical display whenever OBS starts
+or the display is reconnected.
 
-The plugin exists to avoid relying on a saved numeric monitor position. Display
-ordering can change after a restart, dock reconnect or adapter change; blindly
-restoring “monitor 2” can therefore put Program on the wrong screen. Program
-Display instead saves descriptive hardware metadata and refuses to open an
-output when the destination is missing, ambiguous or cannot be identified
-safely.
+OBS can remember a fullscreen projector by screen position, such as “monitor
+2”, but those numbers can change after a restart or after reconnecting a dock,
+adapter or cable. Program Display remembers the intended physical display
+instead. If it is missing or cannot be identified safely, the plugin opens
+nothing rather than risk showing Program on the wrong screen.
 
 Program Display is a third-party community plugin. It is not part of, affiliated
 with or endorsed by the OBS Project.
