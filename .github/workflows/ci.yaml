@@ -36,7 +36,19 @@ jobs:
           ctest --test-dir build-tests --output-on-failure
 
       - name: Configure plugin
-        run: cmake --preset macos -DCMAKE_COMPILE_WARNING_AS_ERROR=ON
+        run: |
+          for attempt in 1 2 3; do
+            if cmake --preset macos -DCMAKE_COMPILE_WARNING_AS_ERROR=ON; then
+              exit 0
+            fi
+
+            if [[ "${attempt}" -eq 3 ]]; then
+              exit 1
+            fi
+
+            echo "::warning::Configure attempt ${attempt} failed; retrying transient dependency downloads"
+            sleep "$((attempt * 10))"
+          done
 
       - name: Build plugin
         run: cmake --build --preset macos --parallel
