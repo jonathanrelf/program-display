@@ -23,10 +23,14 @@ All notable changes to Program Display are documented here. The project follows
   appearing to replace a missing destination implicitly.
 - A bounded, scrollable Details panel with more compact audio diagnostics.
 
-### Supported
+### Compatibility and validation
 
-- OBS Studio 32.2.2 on macOS 13 or later.
-- Universal macOS build; Apple Silicon is the physically validated target.
+- OBS Studio 32.2.2 with a macOS 13 deployment target.
+- Runtime behaviour physically validated only on macOS 27 and Apple Silicon.
+- Universal macOS build (`arm64` and `x86_64`); Intel and macOS 13 through 26
+  remain untested runtime targets.
+- Source builds require Xcode 26.5 or newer and therefore a macOS version that
+  can run that toolchain; Xcode 26.5 requires macOS 26.2 or newer.
 
 ### Known limitations
 

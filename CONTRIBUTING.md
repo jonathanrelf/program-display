@@ -20,6 +20,11 @@ a successful build: they require a public-API identity provider, fail-closed
 matching and recorded physical validation across restart, hot-plug, changed
 display order, missing hardware and ambiguous same-model displays.
 
+The plugin declares a macOS 13 deployment target, but the tested runtime is
+macOS 27 on Apple Silicon. Plugin builds require Xcode 26.5 or newer and its
+macOS 26.5 SDK; see `docs/DEVELOPMENT.md` for the distinct build-host,
+deployment-target and runtime-validation statements.
+
 ## Build and test
 
 Run the dependency-free tests for every identity or state-policy change:

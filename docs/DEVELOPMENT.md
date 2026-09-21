@@ -1,11 +1,20 @@
 # Development
 
-## Supported development target
+## Development and compatibility targets
 
-- Apple Silicon macOS 13 or later
+- Runtime-tested configuration: Apple Silicon on macOS 27
+- Runtime deployment target: macOS 13 or later; macOS 13 through 26 and Intel
+  runtime behaviour are not yet physically tested
 - OBS Studio 32.2.2
-- full Xcode installation
+- full Xcode 26.5 or newer, providing the macOS 26.5 SDK or newer
 - CMake 3.28 or later
+
+Apple's
+[Xcode system requirements](https://developer.apple.com/xcode/system-requirements/)
+list macOS 26.2 or newer as the host requirement for Xcode 26.5. The source-first
+v0.1 release therefore needs a newer build host even though the generated plugin
+declares macOS 13 as its deployment target. A deployment target is not evidence
+that the plugin has been exercised on that OS version.
 
 The repository follows the official
 [`obsproject/obs-plugintemplate`](https://github.com/obsproject/obs-plugintemplate)
@@ -74,10 +83,11 @@ or sharing a log, verify that every `display-probe` and
 and only `*-sha256=` hashes rather than raw EDID or EDID UUID text.
 
 The macOS preset and universal `RelWithDebInfo` plugin build have been verified
-against OBS 32.2.2 and its pinned Qt 6.11.1 dependency runtime. CMake requires
-that exact Qt version. The generated module contains both `arm64` and `x86_64`
-slices and is ad-hoc signed for local development. Full Xcode must be installed
-and selected:
+against OBS 32.2.2 and its pinned Qt 6.11.1 dependency runtime using local Xcode
+27 and GitHub-hosted Xcode 26.6 builds. CMake requires that exact Qt version.
+The generated module contains both `arm64` and `x86_64` slices, declares macOS
+13 as its deployment target and is ad-hoc signed for local development. Full
+Xcode must be installed and selected:
 
 ```sh
 sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer

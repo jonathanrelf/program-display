@@ -38,9 +38,10 @@ source-first preview.
    plugin thread automatically. Two-step verification must be enabled on the
    forum account, and a newly enabled or new account may need time before the
    Add Resource control appears.
-7. Treat `docs/OBS-COMMUNITY-ANNOUNCEMENT.md` as a fact-checked starting point,
-   not submission-ready prose. Rewrite it in the maintainer's own voice and
-   re-check the current Forum Resource and IP Policy immediately before posting.
+7. Review every field in `docs/OBS-COMMUNITY-ANNOUNCEMENT.md`, adapt the text
+   into the maintainer's own voice, retain its complete AI-assistance disclosure
+   and re-check the current Forum Resource and IP Policy immediately before
+   posting.
 
 ## After publication
 

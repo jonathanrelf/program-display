@@ -17,7 +17,7 @@
     {
       "name": "macos",
       "displayName": "macOS Universal",
-      "description": "Build for current OBS Studio on macOS 13+ (Universal binary)",
+      "description": "Universal build with a macOS 13 deployment target",
       "inherits": ["template"],
       "binaryDir": "${sourceDir}/build_macos",
       "condition": {

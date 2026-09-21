@@ -24,9 +24,14 @@ with or endorsed by the OBS Project.
 
 ## Current status
 
-Version 0.1 is a macOS-only preview tested with OBS Studio 32.2.2 on Apple
-Silicon and an Elgato 4K S display/capture path. The build is universal
-(`arm64` and `x86_64`), but Intel hardware has not yet been physically tested.
+Version 0.1 is a macOS-only, source-first preview. Runtime behaviour has been
+tested only with OBS Studio 32.2.2 on macOS 27, Apple Silicon and an Elgato 4K S
+display/capture path.
+
+The generated plugin is a universal binary (`arm64` and `x86_64`) with a macOS
+13 deployment target. Those are build properties, not claims of runtime
+validation: macOS 13 through 26 and Intel hardware have not yet been physically
+tested.
 
 The public OBS frontend API can request a projector but does not return a handle
 that a plugin can query or close. Program Display therefore reports **Output
@@ -49,12 +54,19 @@ independently verified. See [Architecture](docs/ARCHITECTURE.md) and
 It does **not** create an independent video output, route audio, replace the OBS
 mixer, or guarantee that a requested projector remains open.
 
-## Requirements
+## Compatibility and requirements
 
-- macOS 13 or later
-- OBS Studio 32.2.2
-- Apple Silicon for the currently validated configuration
+- Tested runtime: macOS 27 on Apple Silicon
+- Runtime compatibility target: macOS 13 or later (untested before macOS 27)
+- OBS Studio 32.2.2, which itself requires macOS 13 or later
 - A display that macOS exposes as an extended desktop destination
+
+The current source build requires Xcode 26.5 or newer, providing the macOS 26.5
+SDK or newer, plus CMake 3.28 or newer. Apple's
+[Xcode system requirements](https://developer.apple.com/xcode/system-requirements/)
+list macOS 26.2 or newer as the host requirement for Xcode 26.5. Consequently,
+the source-first v0.1 release does not provide a practical installation path for
+older macOS versions even though its binary deployment target is macOS 13.
 
 Windows and Linux are intentionally unsupported in v0.1. Safe support requires
 platform-specific display identity providers plus physical restart, hot-plug,
@@ -66,7 +78,8 @@ The initial v0.1 preview is source-first. A generally distributed macOS package
 should be Developer ID signed and notarised before it is presented as a
 one-click installation.
 
-To build and install locally, install full Xcode and CMake 3.28 or newer, then:
+To build and install locally, use a Mac capable of running Xcode 26.5 or newer,
+install full Xcode and CMake 3.28 or newer, then:
 
 ```sh
 cmake --preset macos
