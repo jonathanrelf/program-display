@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  macos:
+    name: Test and build on macOS
+    runs-on: macos-15
+    timeout-minutes: 45
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Show toolchain versions
+        run: |
+          cmake --version
+          xcodebuild -version
+
+      - name: Run domain tests
+        run: |
+          cmake -S tests -B build-tests
+          cmake --build build-tests --parallel
+          ctest --test-dir build-tests --output-on-failure
+
+      - name: Configure plugin
+        run: cmake --preset macos -DCMAKE_COMPILE_WARNING_AS_ERROR=ON
+
+      - name: Build plugin
+        run: cmake --build --preset macos --parallel
+
+      - name: Verify universal binary
+        run: |
+          binary="build_macos/RelWithDebInfo/program-display.plugin/Contents/MacOS/program-display"
+          file "${binary}"
+          lipo -verify_arch arm64 x86_64 "${binary}"
+
+      - name: Upload test build
+        uses: actions/upload-artifact@v4
+        with:
+          name: program-display-${{ github.sha }}-macos-universal-test-build
+          path: build_macos/RelWithDebInfo/program-display.plugin
+          if-no-files-found: error
+          retention-days: 14

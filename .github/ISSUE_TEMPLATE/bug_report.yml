@@ -1,0 +1,72 @@
+name: Bug report
+description: Report a reproducible Program Display problem
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a problem. Review logs before attaching them: display hashes are persistent pseudonymous identifiers, and logs may contain unrelated private information.
+  - type: input
+    id: version
+    attributes:
+      label: Program Display version
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: input
+    id: obs
+    attributes:
+      label: OBS Studio version
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version and Mac model
+    validations:
+      required: true
+  - type: textarea
+    id: hardware
+    attributes:
+      label: Display and connection path
+      description: Include the display or capture device, hub, adapters and cables in order.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      placeholder: |
+        1. Start OBS with...
+        2. Disconnect...
+        3. Reconnect...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Observed behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Sanitised OBS log excerpt
+      description: Do not include raw EDID, serial numbers, credentials or an unreviewed complete log.
+      render: text
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: OBS “Save projectors on exit” is disabled.
+          required: true
+        - label: I have reviewed any attached log for private information.
+          required: true
