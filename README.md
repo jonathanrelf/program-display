@@ -4,6 +4,10 @@
 
 # Program Display
 
+[![CI](https://github.com/jonathanrelf/program-display/actions/workflows/ci.yaml/badge.svg?branch=main&event=push)](https://github.com/jonathanrelf/program-display/actions/workflows/ci.yaml)
+[![Release](https://img.shields.io/github/v/release/jonathanrelf/program-display?include_prereleases=true&sort=semver)](https://github.com/jonathanrelf/program-display/releases)
+[![Licence](https://img.shields.io/github/license/jonathanrelf/program-display)](LICENSE)
+
 Program Display is an independent, open-source plugin that remembers which
 physical macOS display should show the OBS Studio Program feed. When OBS starts,
 or when that display is reconnected, the plugin resolves the saved display
